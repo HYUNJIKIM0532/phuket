@@ -1,242 +1,92 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>푸꾸옥 7박 8일 여행일정</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>태국 3박 4일 여행일정 (11/15~11/18)</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f8f9fa;
-      color: #333;
+      background-color: #f6f8fa;
+      color: #222;
     }
     header {
-      background-color: #00b894;
+      background: linear-gradient(90deg,#ff7e67,#ffb86b);
       color: white;
       padding: 1.5rem;
       text-align: center;
     }
     main {
-      max-width: 800px;
+      max-width: 900px;
       margin: 2rem auto;
-      padding: 1rem;
+      padding: 1.25rem;
       background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-      border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      border-radius: 10px;
     }
-    .tabs {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
-    .tab-button {
-      background-color: #dfe6e9;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .tab-button.active {
-      background-color: #00b894;
-      color: white;
-    }
-    .tab-content {
-      display: none;
-    }
-    .tab-content.active {
-      display: block;
-    }
-    .date {
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
-    .map-link {
-      margin-top: 0.5rem;
-      display: block;
-      font-size: 0.9rem;
-    }
-    .expense-summary {
-      background-color: #fff;
-      border: 1px solid #ccc;
-      padding: 1rem;
-      margin-top: 2rem;
-      border-radius: 8px;
-    }
-    .expense-summary h2 {
-      color: #2d3436;
-    }
-    .expense-summary ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .expense-summary li::before {
-      content: "\1F4B0 ";
-    }
-    .expense-summary strong {
-      color: #d63031;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      color: #aaa;
-      font-size: 0.9rem;
-    }
+    h2 { color: #ff6b6b; }
+    .overview { margin-bottom: 1rem; color:#555 }
+    .day { margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #f0f0f0 }
+    .date { font-weight: 700; margin-bottom: 0.5rem; color:#333 }
+    ul { margin-top:0.25rem }
+    .note { font-size:0.9rem; color:#777 }
+    footer { text-align:center; padding:1rem; color:#999; font-size:0.9rem }
+    .muted { color:#888 }
   </style>
 </head>
 <body>
   <header>
-    <h1>푸꾸옥 7박 8일 여행일정</h1>
-    <p>현지&amp;상우 여름휴가계획표</p>
+    <h1>태국 3박 4일 여행일정</h1>
+    <p class="muted">여행 기간: 2025년 11월 15일(출발 22:00) ~ 11월 18일</p>
   </header>
 
   <main>
-    <div class="tabs">
-      <button class="tab-button active" data-tab="day1">DAY 1</button>
-      <button class="tab-button" data-tab="day2">DAY 2</button>
-      <button class="tab-button" data-tab="day3">DAY 3</button>
-      <button class="tab-button" data-tab="day4">DAY 4</button>
-      <button class="tab-button" data-tab="day5">DAY 5</button>
-      <button class="tab-button" data-tab="day6">DAY 6</button>
-      <button class="tab-button" data-tab="day7">DAY 7</button>
-      <button class="tab-button" data-tab="day8">DAY 8</button>
+    <div class="overview">
+      <strong>간단 안내:</strong> 지금은 기본 템플릿입니다. 상세 일정과 이동수단, 호텔, 식사 등은 추후 알려주시면 반영하겠습니다.
     </div>
 
-    <div id="day1" class="tab-content active">
-      <div class="date">DAY 1 - 6월 21일 (토)</div>
+    <div class="day">
+      <div class="date">DAY 0 — 11/15 (출발일)</div>
       <ul>
-        <li>숙소: <strong>비다로카 리조트</strong>, 총 2박 중 1박차</li>
-        <li>02:05 인천 출발 ✈️ (푸꾸옥행 비행기)</li>
-        <li>05:50 푸꾸옥 도착</li>
-        <li>투어픽 샌딩 차량 탑승 → 더라운지 이동</li>
-        <li>더라운지에서 휴식 (~10:00까지 예정)</li>
-        <li>10:00 짐 보관
-          <a href="https://maps.app.goo.gl/2HaSp6Fgt799ZF5G8" class="map-link" target="_blank">📍 구글지도에서 보기</a>
-        </li>
-        <li>기본 머드 스파 프로그램 이용 (쏙나우 스파 – <strong>49,051원 / 2인</strong>)
-          <a href="https://maps.app.goo.gl/QpbZPBTDfxJrtt6A6" class="map-link" target="_blank">📍 구글지도에서 보기</a>
-        </li>
-        <li>점심 – <strong>분짜하노이</strong> (약 15,000원)
-          <a href="https://maps.app.goo.gl/AXjtUGdFTTtoobA88" class="map-link" target="_blank">📍 위치</a>
-        </li>
-        <li>카페 – <strong>CAFE GREEN</strong> (약 15,500원)
-          <a href="https://maps.app.goo.gl/iuQzqWxjihYQ9GZV6" class="map-link" target="_blank">📍 위치</a>
-        </li>
-        <li>마사지샵
-          <a href="https://maps.app.goo.gl/eJhdwcx4H7cqCFAc7" class="map-link" target="_blank">📍 위치</a>
-        </li>
-        <li>즈엉동 야시장 도보 이동</li>
+        <li>22:00 — 인천(또는 출발지) 출발 (저녁 출발: 항공편 정보 입력 예정)</li>
+        <li>기내 숙박 및 이동</li>
       </ul>
     </div>
 
-    <div id="day2" class="tab-content">
-      <div class="date">DAY 2 - 6월 22일 (일)</div>
+    <div class="day">
+      <div class="date">DAY 1 — 11/16 (도착 / 시내 투어)</div>
       <ul>
-        <li>숙소: <strong>비다로카 리조트</strong>, 총 2박 중 2박차</li>
-        <li>테니스 예정 및 자유 일정</li>
-        <li>마사지</li>
+        <li>공항 도착 후 호텔 체크인(짐 보관)</li>
+        <li>오전: 가벼운 시내 투어 — 사원 방문 또는 로컬 카페</li>
+        <li>오후: 마사지 또는 쇼핑(시장/몰)</li>
+        <li>저녁: 야시장(또는 추천 레스토랑)</li>
       </ul>
     </div>
 
-    <div id="day3" class="tab-content">
-      <div class="date">DAY 3 - 6월 23일 (월)</div>
+    <div class="day">
+      <div class="date">DAY 2 — 11/17 (근교 투어)</div>
       <ul>
-        <li>숙소: <strong>M빌리지</strong>, 총 2박 중 1박차</li>
-        <li>빈펄 사파리 + 빈원더스 (콤보 티켓)</li>
-        <li>오전: 사파리 탐방</li>
-        <li>오후: 놀이공원 자유시간</li>
+        <li>전일 근교 투어(예: 섬 투어, 사파리, 문화체험 — 선택 입력)</li>
+        <li>저녁: 자유시간 (추천: 리버 크루즈 또는 로컬 음식 탐방)</li>
       </ul>
     </div>
 
-    <div id="day4" class="tab-content">
-      <div class="date">DAY 4 - 6월 24일 (화)</div>
+    <div class="day">
+      <div class="date">DAY 3 — 11/18 (출국일)</div>
       <ul>
-        <li>숙소: <strong>M빌리지</strong>, 총 2박 중 2박차</li>
-        <li>빈펄 사파리 + 빈원더스 (콤보 티켓)</li>
-        <li>자유시간 및 마사지</li>
+        <li>오전: 호텔 체크아웃 전 여유시간 (간단 쇼핑/카페)</li>
+        <li>공항 이동 — 출국 수속</li>
+        <li>※ 도착 및 항공편 시간은 추후 입력하세요.</li>
       </ul>
     </div>
 
-    <div id="day5" class="tab-content">
-      <div class="date">DAY 5 - 6월 25일 (수)</div>
-      <ul>
-        <li>숙소: <strong>풀만 리조트</strong>, 총 1박 중 1박차</li>
-      </ul>
-    </div>
-
-    <div id="day6" class="tab-content">
-      <div class="date">DAY 6 - 6월 26일 (목)</div>
-      <ul>
-        <li>숙소: <strong>코랄베이 리조트</strong>, 총 2박 중 1박차</li>
-        <li>마사지 및 휴식</li>
-        <li>카페나 시장 방문 등 가벼운 일정</li>
-      </ul>
-    </div>
-
-    <div id="day7" class="tab-content">
-      <div class="date">DAY 7 - 6월 27일 (금)</div>
-      <ul>
-        <li>숙소: <strong>코랄베이 리조트</strong>, 총 2박 중 2박차</li>
-        <li>혼똔섬 케이블카 & 워터파크 관광</li>
-        <li>마사지 및 야시장 산책</li>
-      </ul>
-    </div>
-
-    <div id="day8" class="tab-content">
-      <div class="date">DAY 8 - 6월 28일 (토)</div>
-      <ul>
-        <li>숙소 체크아웃 (별도 숙박 없음)</li>
-        <li>공항 이동 및 귀국</li>
-      </ul>
-    </div>
-
-    <div class="expense-summary">
-      <h2>💸 여행 경비 요약</h2>
-      <ul>
-        <li>✈️ 항공권 (1인): <strong>482,811원</strong></li>
-        <li>🏨 비다로카: <strong>82,301원</strong></li>
-        <li>🏨 M빌리지: <strong>109,194원</strong></li>
-        <li>🏨 풀만: <strong>149,091원</strong></li>
-        <li>🏨 코랄베이: <strong>89,108원</strong></li>
-        <li>📱 이심: <strong>12,220원</strong></li>
-        <li>🧖‍♀️ 머드스파: <strong>49,051원</strong></li>
-        <li>🍜 분짜하노이: <strong>15,000원</strong></li>
-        <li>☕ CAFE GREEN: <strong>15,500원</strong></li>
-        <li>💆‍♀️ 마사지 (6일): <strong>102,900원</strong></li>
-        <li>🎟️ 빈원더스+사파리: <strong>157,762원</strong></li>
-        <li>🚡 혼똔섬: <strong>72,350원</strong></li>
-      </ul>
-      <p><strong>예상 합계:</strong> 약 <span id="total-cost"></span>원</p>
-    </div>
+    <p class="note">메모: 출발 시각(11/15 22:00)은 템플릿에 반영했습니다. 상세 일정(원하시는 관광지/맛집/호텔/항공편 등)을 알려주시면 제가 일정에 맞춰 수정해 드립니다.</p>
   </main>
 
   <footer>
-    © 2025 현지의 푸꾸옥 여행 일정표
+    ⓒ 2025 태국 여행 일정 템플릿 — 필요하시면 일정 추가/수정해 드립니다.
   </footer>
-
-  <script>
-    const buttons = document.querySelectorAll('.tab-button');
-    const contents = document.querySelectorAll('.tab-content');
-
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        buttons.forEach(btn => btn.classList.remove('active'));
-        contents.forEach(content => content.classList.remove('active'));
-
-        button.classList.add('active');
-        document.getElementById(button.dataset.tab).classList.add('active');
-      });
-    });
-
-    const total = 482811 + 82301 + 109194 + 149091 + 89108 + 12220 + 49051 + 15000 + 15500 + 102900 + 157762 + 72350;
-    const el = document.getElementById("total-cost");
-    if (el) {
-      el.innerText = total.toLocaleString();
-    }
-  </script>
 </body>
 </html>
