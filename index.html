@@ -3,90 +3,254 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>태국 3박 4일 여행일정 (11/15~11/18)</title>
+  <title>푸켓 3박 4일 여행일정 (11/15~11/18)</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f6f8fa;
-      color: #222;
-    }
-    header {
-      background: linear-gradient(90deg,#ff7e67,#ffb86b);
-      color: white;
-      padding: 1.5rem;
-      text-align: center;
-    }
-    main {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 1.25rem;
-      background: white;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-      border-radius: 10px;
-    }
-    h2 { color: #ff6b6b; }
-    .overview { margin-bottom: 1rem; color:#555 }
-    .day { margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #f0f0f0 }
-    .date { font-weight: 700; margin-bottom: 0.5rem; color:#333 }
-    ul { margin-top:0.25rem }
-    .note { font-size:0.9rem; color:#777 }
-    footer { text-align:center; padding:1rem; color:#999; font-size:0.9rem }
-    .muted { color:#888 }
+    body { font-family: 'Segoe UI', sans-serif; margin:0; padding:0; background:#f6f8fa; color:#222 }
+    header { background: linear-gradient(90deg,#4b7bec,#a29bfe); color:#fff; padding:1.25rem; text-align:center }
+    main { max-width:980px; margin:1.75rem auto; padding:1.25rem; background:#fff; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.06) }
+    .overview { color:#444; margin-bottom:1rem }
+    .flight { background:#f1f3f8; padding:0.75rem; border-radius:6px; margin-bottom:1rem; color:#333 }
+    .tabs { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1rem }
+    .tab-button { padding:0.5rem 0.75rem; border:1px solid #e6e9ef; background:#fff; border-radius:6px; cursor:pointer }
+    .tab-button.active { background:#4b7bec; color:#fff; border-color:#4b7bec }
+    .tab-content { display:none }
+    .tab-content.active { display:block }
+    .day { margin-bottom:1rem }
+    .date { font-weight:700; color:#222; margin-bottom:0.5rem }
+    ul { margin-top:0.25rem; padding-left:1.1rem }
+    footer { text-align:center; padding:1rem; color:#888; font-size:0.9rem }
+    @media (max-width:600px) { main { margin:1rem } .tabs { overflow:auto } }
   </style>
 </head>
 <body>
   <header>
-    <h1>태국 3박 4일 여행일정</h1>
-    <p class="muted">여행 기간: 2025년 11월 15일(출발 22:00) ~ 11월 18일</p>
+    <h1>푸켓 3박 4일 여행일정</h1>
+    <p class="muted">여행 기간: 2025년 11월 15일(출발) ~ 11월 18일(현지)</p>
   </header>
 
   <main>
     <div class="overview">
-      <strong>간단 안내:</strong> 지금은 기본 템플릿입니다. 상세 일정과 이동수단, 호텔, 식사 등은 추후 알려주시면 반영하겠습니다.
+      <strong>항공 정보</strong>
+      <div class="flight">
+        항공편: 아시아나항공 (왕복) — 편명: <strong>OZ0747</strong> (인천→푸켓), <strong>OZ0748</strong> (푸켓→인천)<br>
+        예약처: 하나투어<br>
+        출발: 2025-11-15 17:00 → 푸켓 도착 2025-11-15 21:35<br>
+        복귀: 2025-11-18 22:55 → 한국 도착 2025-11-19 07:15
+      </div>
+      <p>아래 탭을 클릭해 1일차~4일차 일정을 확인하세요. 귀국은 4일차 저녁 출발이며, 한국 도착은 5일차 아침입니다.</p>
     </div>
 
-    <div class="day">
-      <div class="date">DAY 0 — 11/15 (출발일)</div>
-      <ul>
-        <li>22:00 — 인천(또는 출발지) 출발 (저녁 출발: 항공편 정보 입력 예정)</li>
-        <li>기내 숙박 및 이동</li>
-      </ul>
+    <!-- 비용 요약 카드 -->
+    <div style="margin-bottom:1rem; display:flex; gap:1rem; flex-wrap:wrap; align-items:flex-start">
+      <div style="flex:1; min-width:260px; background:#fff7e6; border:1px solid #ffe7c7; padding:0.85rem; border-radius:8px">
+        <h3 style="margin:0 0 0.5rem 0; color:#a66300">비용 요약</h3>
+        <ul style="margin:0; padding-left:1.1rem; color:#333">
+          <li>항공권 (왕복, 아시아나 — <strong>OZ0747 / OZ0748</strong>): <strong id="cost-flight">742,000</strong>원</li>
+          <li>픽업(푸켓공항 → The Pho Thong Phuket) — Klook: <strong id="cost-transfer">29,142</strong>원</li>
+            <li>숙소 1일차: <strong>The Pho Thong Phuket</strong> (Agoda 예약 — 후불결제: <strong id="cost-hotel-thb">800</strong> THB)</li>
+          <li>숙소 2~3일차: <strong>추후 확정</strong></li>
+        </ul>
+          <p style="margin-top:0.5rem">환율: <strong id="exchange-rate">45.68</strong> 원 / THB</p>
+          <p style="margin-top:0.25rem">숙소 선결제(현지통화): <strong style="color:#d35400"><span id="cost-total-thb">0</span> THB</strong> — <span style="color:#d35400">₩<span id="cost-hotel-krw">0</span></span></p>
+          <p style="margin-top:0.5rem">총 예상 비용(원화, 숙소 포함): <strong style="color:#d35400">₩<span id="cost-total-krw">0</span></strong></p>
+          <p style="margin-top:0.25rem">총 예상 비용(원화, 로그 포함): <strong style="color:#d35400">₩<span id="cost-total-with-log">0</span></strong></p>
+      </div>
+
+      <div style="min-width:220px; background:#eef7ff; border:1px solid #cfe9ff; padding:0.75rem; border-radius:8px">
+        <h4 style="margin:0 0 0.4rem 0; color:#1e6fff">이동 정보</h4>
+        <p style="margin:0; color:#333">Klook 예약으로 저녁에 공항 픽업 예정. 목적지: <strong>The Pho Thong Phuket</strong></p>
+      </div>
     </div>
 
-    <div class="day">
-      <div class="date">DAY 1 — 11/16 (도착 / 시내 투어)</div>
-      <ul>
-        <li>공항 도착 후 호텔 체크인(짐 보관)</li>
-        <li>오전: 가벼운 시내 투어 — 사원 방문 또는 로컬 카페</li>
-        <li>오후: 마사지 또는 쇼핑(시장/몰)</li>
-        <li>저녁: 야시장(또는 추천 레스토랑)</li>
-      </ul>
+    <!-- 지출 로그 (localStorage 기반 간단 DB) -->
+    <div style="margin-bottom:1.25rem; display:flex; gap:1rem; flex-wrap:wrap">
+      <div style="flex:1; min-width:300px; background:#ffffff; border:1px solid #e6eefc; padding:0.85rem; border-radius:8px">
+        <h4 style="margin:0 0 0.5rem 0; color:#1e6fff">지출 기록</h4>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.5rem">
+          <input id="log-date" type="date" style="padding:0.4rem; flex:1" />
+          <input id="log-amount" type="number" placeholder="금액" style="padding:0.4rem; width:110px" />
+          <select id="log-currency" style="padding:0.4rem; width:80px">
+            <option value="KRW">KRW</option>
+            <option value="THB">THB</option>
+          </select>
+          <input id="log-desc" type="text" placeholder="메모" style="padding:0.4rem; flex:2" />
+        </div>
+        <div style="display:flex; gap:0.5rem; margin-bottom:0.5rem">
+          <button id="log-add" style="padding:0.4rem 0.75rem">추가</button>
+          <button id="log-export" style="padding:0.4rem 0.75rem">내보내기 (JSON)</button>
+          <label style="padding:0.4rem 0.75rem; background:#f3f6ff; border-radius:6px; cursor:pointer">
+            가져오기 <input id="log-import" type="file" accept="application/json" style="display:none" />
+          </label>
+          <button id="log-clear" style="padding:0.4rem 0.75rem; margin-left:auto">초기화</button>
+        </div>
+        <div id="log-list" style="max-height:180px; overflow:auto; border-top:1px solid #f0f3ff; padding-top:0.5rem"></div>
+      </div>
     </div>
 
-    <div class="day">
-      <div class="date">DAY 2 — 11/17 (근교 투어)</div>
-      <ul>
-        <li>전일 근교 투어(예: 섬 투어, 사파리, 문화체험 — 선택 입력)</li>
-        <li>저녁: 자유시간 (추천: 리버 크루즈 또는 로컬 음식 탐방)</li>
-      </ul>
+    <!-- 환전 내역(참고) -->
+    <div style="margin-bottom:1rem; display:flex; gap:1rem; flex-wrap:wrap; align-items:flex-start">
+      <div style="flex:1; min-width:260px; background:#f7fff3; border:1px solid #e6f8e9; padding:0.85rem; border-radius:8px">
+        <h4 style="margin:0 0 0.4rem 0; color:#27ae60">환전 내역 (참고)</h4>
+        <p style="margin:0 0 0.25rem 0; color:#333">은행: <strong>우리은행</strong></p>
+        <p style="margin:0 0 0.25rem 0; color:#333">환전금액: <strong>7,000 THB</strong> — 환율: <strong>45.68 원/THB</strong></p>
+        <p style="margin:0; color:#d35400">원화 환전액: <strong>₩319,760</strong></p>
+        <p style="margin-top:0.5rem; color:#666; font-size:0.9rem">참고: 페이지의 환율(45.68)은 동일하게 적용됩니다.</p>
+      </div>
     </div>
 
-    <div class="day">
-      <div class="date">DAY 3 — 11/18 (출국일)</div>
-      <ul>
-        <li>오전: 호텔 체크아웃 전 여유시간 (간단 쇼핑/카페)</li>
-        <li>공항 이동 — 출국 수속</li>
-        <li>※ 도착 및 항공편 시간은 추후 입력하세요.</li>
-      </ul>
+    <div class="tabs" role="tablist" aria-label="일정 탭">
+      <button class="tab-button active" data-tab="day1">1일차 (11/15)</button>
+      <button class="tab-button" data-tab="day2">2일차 (11/16)</button>
+      <button class="tab-button" data-tab="day3">3일차 (11/17)</button>
+      <button class="tab-button" data-tab="day4">4일차 (11/18)</button>
     </div>
 
-    <p class="note">메모: 출발 시각(11/15 22:00)은 템플릿에 반영했습니다. 상세 일정(원하시는 관광지/맛집/호텔/항공편 등)을 알려주시면 제가 일정에 맞춰 수정해 드립니다.</p>
+    <section id="day1" class="tab-content active" role="tabpanel">
+      <div class="day">
+        <div class="date">1일차 — 2025-11-15 (도착일)</div>
+        <ul>
+          <li>17:00 — 인천 출발</li>
+          <li>21:35 — 푸켓 도착, 입국 수속 후 호텔 이동 및 체크인</li>
+          <li>저녁: 가벼운 식사 및 휴식</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="day2" class="tab-content" role="tabpanel">
+      <div class="day">
+        <div class="date">2일차 — 2025-11-16</div>
+        <ul>
+          <li>오전: 호텔 조식 후 자유 시내 투어 또는 근처 해변 산책</li>
+          <li>오후: 스파 혹은 옵션 투어 (섬 투어 등)</li>
+          <li>저녁: 야시장 또는 추천 레스토랑 방문</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="day3" class="tab-content" role="tabpanel">
+      <div class="day">
+        <div class="date">3일차 — 2025-11-17</div>
+        <ul>
+          <li>전일 근교 투어 (예: 피피섬/스노클링, 사파리, 문화 체험 중 선택)</li>
+          <li>저녁: 자유시간 및 쇼핑</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="day4" class="tab-content" role="tabpanel">
+      <div class="day">
+        <div class="date">4일차 — 2025-11-18 (출국일)</div>
+        <ul>
+          <li>오전/오후: 체크아웃 전 여유시간 — 카페/마켓/마지막 쇼핑</li>
+          <li>저녁: 공항 이동 및 출국 수속</li>
+          <li>22:55 — 푸켓 출발 (한국 도착: 2025-11-19 07:15)</li>
+        </ul>
+      </div>
+    </section>
+
+  
   </main>
 
   <footer>
-    ⓒ 2025 태국 여행 일정 템플릿 — 필요하시면 일정 추가/수정해 드립니다.
+    ⓒ 2025 푸켓 여행 일정
   </footer>
+
+  <script>
+    // 탭 스위치 간단 스크립트
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabButtons.forEach(btn => btn.addEventListener('click', () => {
+      tabButtons.forEach(b=>b.classList.remove('active'));
+      tabContents.forEach(c=>c.classList.remove('active'));
+      btn.classList.add('active');
+      const id = btn.dataset.tab;
+      document.getElementById(id).classList.add('active');
+    }));
+    
+    // 비용 표시 계산 및 지출 로그 기능 (환율 고정)
+    (function(){
+      const EXCHANGE_RATE = 45.68; // 1 THB = 45.68 KRW (고정)
+
+      function format(n){ return Number(n).toLocaleString(); }
+
+      // 기본 비용
+      const flight = Number(document.getElementById('cost-flight')?.innerText.replace(/,/g,'') || 0);
+      const transfer = Number(document.getElementById('cost-transfer')?.innerText.replace(/,/g,'') || 0);
+      const hotelTHB = Number(document.getElementById('cost-hotel-thb')?.innerText.replace(/,/g,'') || 0);
+      const hotelKRW = Math.round(hotelTHB * EXCHANGE_RATE);
+
+      // 표시
+      const elEx = document.getElementById('exchange-rate'); if(elEx) elEx.innerText = EXCHANGE_RATE;
+      const elHotelKRW = document.getElementById('cost-hotel-krw'); if(elHotelKRW) elHotelKRW.innerText = format(hotelKRW);
+      const baseTotalKRW = flight + transfer + hotelKRW;
+      const elBaseTotal = document.getElementById('cost-total-krw'); if(elBaseTotal) elBaseTotal.innerText = format(baseTotalKRW);
+      const elTHB = document.getElementById('cost-total-thb'); if(elTHB) elTHB.innerText = format(hotelTHB);
+
+      // 지출 로그 (localStorage 사용)
+      const LOG_KEY = 'tripLog_v1';
+
+      function loadLog(){
+        try{ const raw = localStorage.getItem(LOG_KEY); return raw ? JSON.parse(raw) : []; }catch(e){ return []; }
+      }
+      function saveLog(list){ localStorage.setItem(LOG_KEY, JSON.stringify(list)); }
+
+      function toKRW(amount, currency){
+        if(!amount) return 0;
+        if(currency === 'KRW') return Number(amount);
+        if(currency === 'THB') return Math.round(Number(amount) * EXCHANGE_RATE);
+        return 0;
+      }
+
+      function renderLog(){
+        const list = loadLog();
+        const el = document.getElementById('log-list');
+        if(!el) return;
+        if(list.length === 0){ el.innerHTML = '<p style="color:#777; margin:0">기록이 없습니다.</p>'; }
+        else{
+          el.innerHTML = list.map((it,idx)=>{
+            const krw = toKRW(it.amount, it.currency);
+            return `<div style="padding:0.35rem 0; border-bottom:1px solid #f3f6ff"><strong>${it.date || ''}</strong> — ${it.desc || ''} : ${it.amount} ${it.currency} (₩${format(krw)}) <button data-idx="${idx}" style="float:right">삭제</button></div>`;
+          }).join('');
+        }
+        // attach delete handlers
+        el.querySelectorAll('button[data-idx]').forEach(b=> b.addEventListener('click', ()=>{
+          const i = Number(b.dataset.idx); const l = loadLog(); l.splice(i,1); saveLog(l); renderLog(); updateTotalsWithLog();
+        }));
+      }
+
+      function addLogEntry(entry){ const l = loadLog(); l.unshift(entry); saveLog(l); renderLog(); updateTotalsWithLog(); }
+
+      function exportLog(){ const l = loadLog(); const blob = new Blob([JSON.stringify(l, null, 2)], {type:'application/json'}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'trip-log.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }
+
+      function importLogFile(file){ const reader = new FileReader(); reader.onload = e=>{ try{ const data = JSON.parse(e.target.result); if(Array.isArray(data)){ saveLog(data); renderLog(); updateTotalsWithLog(); } else alert('올바른 JSON 파일이 아닙니다.'); }catch(err){ alert('파일 읽기 실패'); } }; reader.readAsText(file); }
+
+      // totals including logged expenses
+      function updateTotalsWithLog(){
+        const list = loadLog();
+        const extraKRW = list.reduce((s,it)=> s + toKRW(it.amount, it.currency), 0);
+        const totalWithLog = baseTotalKRW + extraKRW;
+        const el = document.getElementById('cost-total-with-log'); if(el) el.innerText = format(totalWithLog);
+      }
+
+      // wire up controls
+      document.getElementById('log-add')?.addEventListener('click', ()=>{
+        const date = document.getElementById('log-date')?.value || new Date().toISOString().slice(0,10);
+        const amount = document.getElementById('log-amount')?.value;
+        const currency = document.getElementById('log-currency')?.value || 'KRW';
+        const desc = document.getElementById('log-desc')?.value || '';
+        if(!amount){ alert('금액을 입력하세요'); return; }
+        addLogEntry({date, amount: Number(amount), currency, desc});
+        (document.getElementById('log-amount')).value = '';
+        (document.getElementById('log-desc')).value = '';
+      });
+
+      document.getElementById('log-export')?.addEventListener('click', exportLog);
+      document.getElementById('log-import')?.addEventListener('change', (e)=>{ const f = e.target.files?.[0]; if(f) importLogFile(f); });
+      document.getElementById('log-clear')?.addEventListener('click', ()=>{ if(confirm('기록을 모두 삭제하시겠습니까?')){ saveLog([]); renderLog(); updateTotalsWithLog(); } });
+
+      // initial render
+      renderLog(); updateTotalsWithLog();
+    })();
+  </script>
 </body>
 </html>
