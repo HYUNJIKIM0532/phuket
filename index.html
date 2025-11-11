@@ -48,7 +48,7 @@
           <li>항공권 (왕복, 아시아나 — <strong>OZ0747 / OZ0748</strong>): <strong id="cost-flight">742,000</strong>원</li>
           <li>공항→First 숙소 택시 (Klook): <strong id="cost-transfer">27,929</strong>원</li>
           <li>피피섬 투어 (Klook, 11/16 오전, 점심포함): <strong id="cost-pptour">87,040</strong>원</li>
-          <li>숙소 1일차: <a href="https://www.google.com/maps/place/Burning+Flame+Patong" target="_blank" rel="noopener"><strong>Burning Flame Patong</strong></a> (Booking.com — 후불결제: <strong id="cost-hotel-thb">708</strong> THB, 결제: <strong id="cost-hotel-usd">$21.95</strong>)</li>
+          <li>숙소 1일차: <a href="https://www.google.com/maps/place/Burning+Flame+Patong" target="_blank" rel="noopener"><strong>Burning Flame Patong</strong></a> (Booking.com — 예약 완료: <strong id="cost-hotel-thb">708</strong> THB, 상태: <strong id="cost-hotel-usd">예약완료</strong>)</li>
           <li>숙소 2~3일차: <a href="https://www.google.com/maps/place/Saladee+Gallery+Residence" target="_blank" rel="noopener"><strong>Saladee Gallery Residence</strong></a> (Agoda, 2박: <strong id="cost-saladee">216,223</strong>원)</li>
           <li>마사지 (Sirapak Massage, 60분) — 예상: <strong id="cost-massage-thb">700</strong> THB (둘이서 합계) — ₩<span id="cost-massage-krw">0</span></li>
         </ul>
@@ -146,7 +146,23 @@
         <div class="date">3일차 — 2025-11-17</div>
         <ul>
           <li>Saladee Gallery Residence에서 휴식 및 자유 일정</li>
-          <li>현지 카페/시장 방문 등 자유시간</li>
+          <li>관심 투어(선택): 아래 옵션 중 골라 예약해보세요.</li>
+          <li style="margin-top:0.5rem"><strong>1) Phuket Elephant Sanctuary (윤리적 코끼리 보호 센터)</strong>
+            <div style="margin-top:0.25rem; color:#333">프로그램: Half-day / Canopy Walkway 등 — 소요 1.5~3.5시간 • 요금: 약 <strong id="elephant-price-thb">3,000</strong> THB</div>
+            <div style="margin-top:0.25rem"><a href="https://www.phuketelephantsanctuary.org/programs/half-day/" target="_blank" rel="noopener">Phuket Elephant Sanctuary — 프로그램 페이지</a> • ₩<span id="elephant-price-krw">0</span></div>
+          </li>
+          <li style="margin-top:0.5rem"><strong>2) Big Buddha 방문 & 전망대</strong>
+            <div style="margin-top:0.25rem; color:#333">특징: 사원/대형 불상 관람(입장 무료), 택시/투어로 반나절 소요 • 교통·가이드 포함 투어 예상: <strong id="bigbuddha-price-thb">400</strong> THB</div>
+            <div style="margin-top:0.25rem"><a href="https://www.google.com/maps/place/Big+Buddha+Phuket" target="_blank" rel="noopener">Big Buddha 위치 (Google Maps)</a> • ₩<span id="bigbuddha-price-krw">0</span></div>
+          </li>
+          <li style="margin-top:0.5rem"><strong>3) Tiger Kingdom (타이거와 사진/교감 세션)</strong>
+            <div style="margin-top:0.25rem; color:#333">특징: 포토세션/소규모 교감 가능(안전수칙 준수 필요) • 요금: 약 <strong id="tiger-price-thb">1,800</strong> THB</div>
+            <div style="margin-top:0.25rem"><a href="https://www.tigerkingdomphuket.com/" target="_blank" rel="noopener">Tiger Kingdom Phuket</a> • ₩<span id="tiger-price-krw">0</span></div>
+          </li>
+          <li style="margin-top:0.5rem"><strong>4) 기타 옵션</strong>
+            <div style="margin-top:0.25rem; color:#333">ATV, 짚라인, 현지 문화투어(차롱사원+시장) 등 — 소요/가격 다양</div>
+            <div style="margin-top:0.25rem">예약 플랫폼: <a href="https://www.klook.com/" target="_blank" rel="noopener">Klook</a>, <a href="https://www.getyourguide.com/" target="_blank" rel="noopener">GetYourGuide</a></div>
+          </li>
         </ul>
       </div>
     </section>
@@ -229,9 +245,9 @@
     const elHotelKRW = document.getElementById('cost-hotel-krw'); if(elHotelKRW) elHotelKRW.innerText = format(hotelKRW);
     const elMassageKRW = document.getElementById('cost-massage-krw'); if(elMassageKRW) elMassageKRW.innerText = format(massageKRW);
     const elMassageInlineKRW = document.getElementById('massage-krw-inline'); if(elMassageInlineKRW) elMassageInlineKRW.innerText = format(massageKRW);
-    // show converted hotel USD
-    // create element to show hotel USD->KRW if exists
-    const hotelUsdShow = document.getElementById('cost-hotel-usd'); if(hotelUsdShow){
+    // show converted hotel USD only when a numeric USD amount exists
+    const hotelUsdShow = document.getElementById('cost-hotel-usd');
+    if(hotelUsdShow && hotelUSD > 0){
       const span = document.createElement('span'); span.style.marginLeft='6px'; span.style.color='#666'; span.innerText = `(약 ₩${format(hotelUSDKRW)})`;
       hotelUsdShow.parentNode && hotelUsdShow.parentNode.insertBefore(span, hotelUsdShow.nextSibling);
     }
@@ -257,6 +273,19 @@
     if(document.getElementById('menu-pho-krw')) document.getElementById('menu-pho-krw').innerText = format(phoKRW);
     if(document.getElementById('dinner-total-thb')) document.getElementById('dinner-total-thb').innerText = format(dinnerTotalTHB);
     if(document.getElementById('dinner-total-krw')) document.getElementById('dinner-total-krw').innerText = format(dinnerTotalKRW);
+
+  // Day 3 - suggested tours price conversions
+  const elephantTHB = Number(document.getElementById('elephant-price-thb')?.innerText.replace(/,/g,'') || 0);
+  const elephantKRW = Math.round(elephantTHB * EXCHANGE_RATE);
+  if(document.getElementById('elephant-price-krw')) document.getElementById('elephant-price-krw').innerText = format(elephantKRW);
+
+  const bigbuddhaTHB = Number(document.getElementById('bigbuddha-price-thb')?.innerText.replace(/,/g,'') || 0);
+  const bigbuddhaKRW = Math.round(bigbuddhaTHB * EXCHANGE_RATE);
+  if(document.getElementById('bigbuddha-price-krw')) document.getElementById('bigbuddha-price-krw').innerText = format(bigbuddhaKRW);
+
+  const tigerTHB = Number(document.getElementById('tiger-price-thb')?.innerText.replace(/,/g,'') || 0);
+  const tigerKRW = Math.round(tigerTHB * EXCHANGE_RATE);
+  if(document.getElementById('tiger-price-krw')) document.getElementById('tiger-price-krw').innerText = format(tigerKRW);
 
       // 지출 로그 (localStorage 사용)
       const LOG_KEY = 'tripLog_v1';
@@ -307,17 +336,17 @@
 
       // Auto-add specific entries if not present (avoid duplicates by desc match)
       (function autoAddDefaults(){
-        const list = loadLog();
+        let list = loadLog();
         function hasDesc(substr){ return list.some(it=> (it.desc||'').toString().toLowerCase().indexOf(substr.toLowerCase()) !== -1); }
         const today = new Date().toISOString().slice(0,10);
+        // Clean up any existing Booking.com unpaid entries (user indicated 숙소는 이미 예약 완료)
+        const filtered = list.filter(it=> (it.desc||'').toString().toLowerCase().indexOf('booking.com') === -1 && (it.desc||'').toString().toLowerCase().indexOf('booking') === -1);
+        if(filtered.length !== list.length){ saveLog(filtered); list = filtered; }
         // 1) 우리은행 환전 7000 THB
         if(!hasDesc('우리은행 환전')){
           addLogEntry({date: today, amount: 7000, currency: 'THB', desc: '우리은행 환전 7,000 THB'});
         }
-        // 2) Booking.com 호텔(후불) — add as USD expense in KRW
-        if(!hasDesc('Booking.com') && hotelUSD > 0){
-          addLogEntry({date: today, amount: hotelUSD, currency: 'USD', desc: 'Booking.com 숙박비 (후불)'});
-        }
+        // 2) Booking.com 호텔(후불) - 더이상 자동 추가하지 않음 (숙소 예약 완료)
         // 3) Sirapak 마사지 (둘이서 700 THB)
         if(!hasDesc('Sirapak') && massageTHB > 0){
           addLogEntry({date: today, amount: massageTHB, currency: 'THB', desc: 'Sirapak Massage (60min)'});
